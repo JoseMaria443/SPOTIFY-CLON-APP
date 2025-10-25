@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "EXAMPLE_APP": {
+    "SPOTIFY-CLON-APP": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -21,14 +21,15 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular/build:application",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "public",
+                "output": "/"
               }
             ],
             "styles": [
@@ -63,10 +64,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "EXAMPLE_APP:build:production"
+              "buildTarget": "SPOTIFY-CLON-APP:build:production"
             },
             "development": {
-              "buildTarget": "EXAMPLE_APP:build:development"
+              "buildTarget": "SPOTIFY-CLON-APP:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -81,7 +82,8 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "public",
+                "output": "/"
               }
             ],
             "styles": [
@@ -91,5 +93,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "ec0b75d1-cd54-49a5-85c1-a924291722eb"
   }
 }

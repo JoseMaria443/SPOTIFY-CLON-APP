@@ -1,5 +1,11 @@
-<app-song-info></app-song-info>
-@if(view){
-  <app-second-child></app-second-child>
-}
-<button (click)="destroy()">ELIMINAR</button>
+<div class="music-player">
+    <div class="main-content">
+        <app-song-info></app-song-info>
+        @if(view){
+            <app-second-child></app-second-child>
+        }
+    </div>
+    <div class="controls">
+        <button (click)="destroy()" class="control-button">Cerrar reproductor</button>
+    </div>
+</div>
