@@ -42,3 +42,5 @@ testem.log
 Thumbs.db
 
 /public/media
+/public/font-awesome
+/src/environments/*.local.ts

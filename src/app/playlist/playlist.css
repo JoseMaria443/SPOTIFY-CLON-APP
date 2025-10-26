@@ -1,0 +1,19 @@
+:host{
+    height: 110%;
+    width: 100%;
+    border-left:solid #181c32;
+}
+
+h2{
+    width: 100%;
+    text-align: center;
+    height: 40px;
+    margin-bottom: 1rem;
+    border-bottom: solid #181c32;
+}
+
+.content{
+    height: 95%;
+    overflow: auto;
+    scrollbar-width: none;
+}

@@ -1,0 +1,32 @@
+:host{
+    width: 60%;
+    height: 90px;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin-right: 25%;
+}
+#control-bar{
+    width: 70%;
+}
+
+.player-buttons{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.player-buttons span i{
+    font-size: 2em;
+    color: #FF3B82;
+    
+}
+
+input{
+    accent-color: #FF3B82;
+
+}

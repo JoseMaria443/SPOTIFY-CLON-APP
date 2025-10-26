@@ -1,23 +1,20 @@
-import { Component } from '@angular/core';
+import { booleanAttribute, Component, input, OnInit } from '@angular/core';
+import { Song } from '../interfaces/song';
 
 @Component({
   selector: 'app-song-info',
   standalone: false,
   templateUrl: './song-info.html',
-  styleUrl: './song-info.css'
+  styleUrl: './song-info.css',
+  host:{
+    '[class]': 'displayMode()',
+  }
 })
-export class SongInfo {
+export class SongInfo{
+  display_mode = input.required<string>({ alias: 'displayMode'});
+  song = input.required<Song>();
 
-  constructor(){
-    console.log("COMPONENTE SONGINFO CREADO");
+  displayMode(){
+    return this.display_mode();
   }
-
-  song = {
-    cover: "./media/default_img.jpg",
-    artist: "ARTISTA 1",
-    name: "CANCION 1",
-    url: ""
-
-  }
-
 }
