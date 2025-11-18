@@ -1,0 +1,52 @@
+<div id="main">
+  <!-- Left: tracks from the album (uses same class as main playlist) -->
+  <div class="playlist-column">
+    <div class="playlist-header">
+      <button class="back-btn" (click)="backToMain()">← Volver</button>
+      <h3>Pistas del álbum</h3>
+    </div>
+    <div class="playlist-list">
+      <div *ngFor="let t of tracks" class="playlist-item" (click)="playTrack(t)">
+        <img [src]="t.cover" [alt]="t.name">
+        <div class="pl-info">
+          <div class="pl-title">{{t.name}}</div>
+          <div class="pl-artist muted">{{t.artist}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Center: album cover and basic info (reuses player-center styles) -->
+  <div class="player-center">
+    <div class="disc-wrapper">
+      <div class="disc" style="animation:none;">
+        <img [src]="album?.images?.[0]?.url || 'assets/default-album.png'" [alt]="album?.name">
+      </div>
+    </div>
+
+    <div class="current-info">
+      <div class="current-title">{{album?.name}}</div>
+      <div class="current-artist">{{album?.artists?.[0]?.name}} • {{album?.release_date}}</div>
+    </div>
+  </div>
+
+  <!-- Right: related albums (keeps albums/search area) -->
+  <div class="search-area">
+    <div class="search-container">
+      <h3>Otros álbumes</h3>
+    </div>
+    <div class="search-results">
+      <div class="results-section albums">
+        <div class="track-list">
+          <div *ngFor="let a of relatedAlbums" class="track-item" (click)="openAlbum(a)">
+            <img [src]="a?.images?.[0]?.url || 'assets/default-album.png'" [alt]="a.name">
+            <div class="track-info">
+              <h4>{{a.name}}</h4>
+              <p>{{a.artists?.[0]?.name}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

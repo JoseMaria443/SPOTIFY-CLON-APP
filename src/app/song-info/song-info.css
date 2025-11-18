@@ -3,6 +3,8 @@
     margin: 0;
 }
 
+:host { display: block; }
+
 :host(.card){
     width: 100%;
     display: flex;
@@ -12,11 +14,20 @@
     padding: 10px 0;
 }
 
+:host(.card):hover{
+    background-color: #0f0f0f;
+    border-radius: 8px;
+}
+
 :host(.card) .card-song-img{
     width: 75px;
     height: 75px;
     border-radius: 20%;
     margin-right: 10px;
+}
+
+:host(.card) .card-song-img{
+    box-shadow: 0 8px 30px rgba(0,0,0,0.6);
 }
 
 :host(.card) .card-song-details{
@@ -54,7 +65,8 @@
     border-radius: 200px;
     margin-bottom: 20px;
     animation: spin 4s linear infinite;
-    box-shadow: 0 0 30px rgba(255, 0, 221, 0.3);
+    /* luz sutil verde en el disco */
+    box-shadow: 0 0 30px rgba(29,185,84,0.14);
 }
 @keyframes spin {
     from{
@@ -75,11 +87,13 @@
 :host(.main) .card-song-details .card-song-title{
     font-weight: 400;
     font-size: 2.3em;
+    color: #ffffff;
 }
 
 :host(.main) .card-song-details .card-song-artist{
     font-weight: 200;
     font-size: 1.5em;
+    color: #bdbdbd;
 }
 
 .card-song-details h2,
@@ -87,4 +101,11 @@
     text-align: center;
     width: 100%;
     margin: 0;
+}
+
+/* Make main song info centered and with subtle panel */
+:host(.main) {
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+    padding: 20px;
+    border-radius: 12px;
 }

@@ -21,11 +21,12 @@ export const authInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, ne
         if(!body || !body.access_token)
           return;
 
-        const expirationTimeMS = 36*100;
+        // Usa expires_in si viene en la respuesta (segundos) y conviértelo a ms
+        const expirationTimeMS = body.expires_in ? body.expires_in * 1000 : 3600 * 1000;
         const expirationDate = new Date(Date.now() + expirationTimeMS);
 
-       _cookieService.createCookie('access_token',body.access_token, expirationDate);
-       console.log("ACCES TOKEN CREADO")
+       _cookieService.createCookie('access_token', body.access_token, expirationDate);
+       console.log("ACCESS TOKEN CREADO")
       }
     )
   );

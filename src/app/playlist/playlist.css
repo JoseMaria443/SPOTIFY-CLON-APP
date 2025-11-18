@@ -1,7 +1,9 @@
 :host{
-    height: 110%;
+    height: 100%;
     width: 100%;
-    border-left:solid #181c32;
+    background: linear-gradient(180deg, #000033, #000066);
+    border-right: 1px solid rgba(0, 0, 139, 0.2);
+    padding: 0.6rem;
 }
 
 h2{
@@ -9,11 +11,12 @@ h2{
     text-align: center;
     height: 40px;
     margin-bottom: 1rem;
-    border-bottom: solid #181c32;
+    border-bottom: 1px solid rgba(0, 0, 139, 0.3);
+    color: #4169E1;
 }
 
 .content{
-    height: 95%;
+    height: calc(100% - 48px);
     overflow: auto;
     scrollbar-width: none;
 }

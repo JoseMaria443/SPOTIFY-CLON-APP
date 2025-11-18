@@ -1,0 +1,44 @@
+<!-- Vista enfocada en el álbum: cover centrada fija y lista de pistas a la derecha -->
+<div id="main" class="album-view">
+
+  <!-- Back button -->
+  <div style="width:100%; display:flex; justify-content:flex-start; padding:8px 0 8px 8px;">
+    <button class="ctrl back" (click)="goBack()" title="Volver a la vista principal">
+      <i class="fa-solid fa-arrow-left"></i> Volver
+    </button>
+  </div>
+
+  <!-- Center: large fixed album cover -->
+  <div class="player-center">
+    <div class="disc-wrapper">
+      <div class="disc">
+        <img [src]="(selectedAlbum?.images?.[0]?.url) || song.cover || 'assets/default-track.png'" [alt]="selectedAlbum?.name || song.name">
+      </div>
+    </div>
+    <div class="current-info">
+      <div class="current-title">{{selectedAlbum?.name || song.name}}</div>
+      <div class="current-artist">{{selectedAlbum?.artists?.[0]?.name || song.artist}}</div>
+    </div>
+  </div>
+
+  <!-- Right column: album tracks list -->
+  <div class="songs-column">
+    <div class="playlist-header">
+      <h3>Pistas</h3>
+      <div class="muted">{{ (playlist && playlist.length) || 0 }} canciones</div>
+    </div>
+    <div class="playlist-list">
+      @for (item of playlist; track item.name) {
+        <div class="playlist-item" (click)="selectTrackFromPlaylist(item)">
+          <img [src]="item.cover" [alt]="item.name">
+          <div class="pl-info">
+            <div class="pl-title">{{item.name}}</div>
+            <div class="pl-artist muted">{{item.artist}}</div>
+          </div>
+          <div class="pl-duration">{{ formatTime((item.duration_ms || 0) / 1000) }}</div>
+        </div>
+      }
+    </div>
+  </div>
+
+</div>

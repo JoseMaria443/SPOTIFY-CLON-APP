@@ -1,32 +1,100 @@
 :host{
-    width: 60%;
-    height: 90px;
-    margin-top: 5px;
+    width: 400px;
+    height: 100px;
+    margin: 20px auto;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    margin-right: 25%;
+    background: linear-gradient(145deg, #000033, #000000, #330000);
+    border: 1px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(to right, #00008B, #DC143C);
+    border-radius: 15px;
+    box-shadow: 
+        0 0 15px rgba(220, 20, 60, 0.2),
+        0 0 30px rgba(0, 0, 139, 0.1);
+    padding: 15px;
 }
+
 #control-bar{
-    width: 70%;
+    width: 85%;
+    height: 4px;
+    margin-bottom: 10px;
+    cursor: pointer;
 }
 
 .player-buttons{
-    width: 50%;
+    width: 60%;
     height: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    background: linear-gradient(145deg, 
+        rgba(0, 0, 51, 0.8), 
+        rgba(51, 0, 0, 0.8)
+    );
+    padding: 10px;
+    border-radius: 30px;
+}
+
+.player-buttons span {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.player-buttons span:hover {
+    background: linear-gradient(145deg,
+        rgba(0, 0, 139, 0.2),
+        rgba(220, 20, 60, 0.2)
+    );
 }
 
 .player-buttons span i{
-    font-size: 2em;
-    color: #FF3B82;
-    
+    font-size: 1.8em;
+    background: linear-gradient(45deg, #DC143C, #00008B);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-input{
-    accent-color: #FF3B82;
+.player-buttons span.play i {
+    font-size: 2.2em;
+    background: linear-gradient(45deg, #FF1744, #1E88E5);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: linear-gradient(90deg, 
+        #000033 0%,
+        #DC143C 50%,
+        #000066 100%
+    );
+    border-radius: 8px;
+    height: 4px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #DC143C;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 10px rgba(220, 20, 60, 0.5);
 }

@@ -3,7 +3,7 @@
     display: flex;
     width: 100vw;
     height: 100vh;
-    background-color: #121421;
-    color: white;
+    background: linear-gradient(145deg, #000000, #000033, #330000);
+    color: #e6e6e6;
     font-family: Arial, Helvetica, sans-serif;
 }

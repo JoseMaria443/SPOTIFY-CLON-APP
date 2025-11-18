@@ -1,6 +1,115 @@
-<app-headebar></app-headebar>
 <div id="main">
-    <app-song-info [song]="song" displayMode="main"></app-song-info>
-    <app-playlist [playlist]="playlist"></app-playlist>
+    <!-- Left column: small playlist -->
+    <div class="playlist-column">
+        <div class="playlist-header">
+            <h3>Mi Playlist</h3>
+        </div>
+        <div class="playlist-list">
+            @for (item of playlist; track item.name) {
+                <div class="playlist-item" (click)="selectTrackFromPlaylist(item)">
+                    <img [src]="item.cover" [alt]="item.name">
+                    <div class="pl-info">
+                        <div class="pl-title">{{item.name}}</div>
+                        <div class="pl-artist muted">{{item.artist}}</div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- Center: player visual + controls -->
+    <div class="player-center">
+        <div class="disc-wrapper">
+                <div class="disc">
+                <img [src]="(selectedAlbum?.images?.[0]?.url) || song.cover || 'assets/default-track.png'" [alt]="song.name">
+            </div>
+        </div>
+
+        <!-- Progress bar (above controls) -->
+        <div class="progress-wrapper">
+            <div class="time left">{{formatTime(currentTime)}}</div>
+            <input type="range" class="progress-bar" min="0" [max]="duration" [value]="currentTime" (input)="seekTo($event)" />
+            <div class="time right">{{formatTime(duration)}}</div>
+        </div>
+
+        <div class="controls">
+            <button class="ctrl prev" title="Anterior">
+                <i class="fa-solid fa-backward-step"></i>
+            </button>
+            <button class="ctrl play" title="Play/Pause">
+                <i class="fa-solid fa-play"></i>
+            </button>
+            <button class="ctrl next" title="Siguiente">
+                <i class="fa-solid fa-forward-step"></i>
+            </button>
+        </div>
+
+        <div class="current-info">
+            <div class="current-title">{{song.name}}</div>
+            <div class="current-artist">{{song.artist}}</div>
+        </div>
+    </div>
+
+    <!-- Right column: search + results -->
+    <div class="search-area">
+        <div class="search-container">
+            <input type="text" 
+                   class="search-input" 
+                   placeholder="Buscar canciones..." 
+                   (input)="onSearch($event)">
+        </div>
+
+        <div class="search-results">
+            @if (!searchResults().tracks?.items?.length && !searchResults().artists?.items?.length && !searchResults().albums?.items?.length) {
+                <div class="no-results">
+                    <app-song-info [song]="song" displayMode="main"></app-song-info>
+                </div>
+            } @else {
+                <!-- Album section -->
+                @if (searchResults().albums?.items?.length) {
+                    <div class="results-section albums">
+                        <h3>Álbumes</h3>
+                        <div class="track-list">
+                            @for (album of searchResults().albums?.items; track album.id) {
+                                <div class="track-item" 
+                                     [class.selected]="selectedAlbum?.id === album.id"
+                                     (click)="showAlbum(album)">
+                                    <img [src]="album.images?.[0]?.url || 'assets/default-album.png'" 
+                                         [alt]="album.name">
+                                    <div class="track-info">
+                                        <h4>{{album.name}}</h4>
+                                        <p>{{album.artists[0]?.name}}</p>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+
+                <!-- Tracks section -->
+                @if (searchResults().tracks?.items?.length) {
+                    <div class="results-section tracks">
+                        <h3>Canciones</h3>
+                        <div class="track-list">
+                            @for (track of searchResults().tracks?.items; track track.id) {
+                                <div class="track-item" 
+                                    (click)="selectTrackFromPlaylist({
+                                        cover: trackImage(track),
+                                        name: track.name,
+                                        artist: track.artists[0]?.name || 'Unknown Artist',
+                                        duration_ms: track.duration_ms
+                                    })">
+                                    <img [src]="trackImage(track)" [alt]="track.name">
+                                    <div class="track-info">
+                                        <h4>{{track.name}}</h4>
+                                        <p>{{track.artists[0]?.name || 'Unknown Artist'}}</p>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
 </div>
-<app-audio-controller></app-audio-controller>
